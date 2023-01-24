@@ -27,6 +27,8 @@ samples, guidance on mobile development, and a full API reference.
 * SafeArea
     : 
 * MaterailApp
+* IntrinsicHeight
+    * 같은 레벨의 위젯이라도 각기 차지하는 영역이 다름. 따라서 최대 영역의 위젯과 맞추기 위해서는 부모 위젯을 이 위젯으로 감싸면 동일하게 변경
 
 ### StateWidget
 * initState: 비동기가 안됨. 그래서 비동기 함수를 선언한 다음 initState에서 호출해서 사용해야 함.

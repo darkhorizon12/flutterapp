@@ -1,7 +1,9 @@
 import 'package:actual/common/const/data.dart';
 import 'package:actual/restaurant/view/component/restaurant_card.dart';
+import 'package:actual/restaurant/view/model/restaurant_model.dart';
+import 'package:actual/restaurant/view/restaurant_detail_screen.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class RestaurantScreen extends StatelessWidget {
   const RestaurantScreen({super.key});
@@ -31,28 +33,27 @@ class RestaurantScreen extends StatelessWidget {
             future: paginateRestaurant(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return Container();
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               }
 
               return ListView.separated(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (_, index) {
                   final item = snapshot.data![index];
-                  return RestaurantCard(
-                    image: Image.network(
-                      'http://$ip${item['thumbUrl']}',
-                      fit: BoxFit.cover,
+                  final pItem = RestaurantModel.fromJson(json: item);
+
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => RestaurantDetailScreen(
+                                id: pItem.id,
+                              )));
+                    },
+                    child: RestaurantCard.fromModel(
+                      model: pItem,
                     ),
-                    // image: Image.asset(
-                    //   'asset/img/food/ddeok_bok_gi.jpg',
-                    //   fit: BoxFit.cover,
-                    // ),
-                    name: item['name'],
-                    tags: List<String>.from(item['tags']),
-                    ratingsCount: item['ratingsCount'],
-                    deliveryTime: item['deliveryTime'],
-                    deliveryFee: item['deliveryFee'],
-                    ratings: item['ratings'],
                   );
                 },
                 separatorBuilder: (context, index) {
