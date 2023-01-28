@@ -16,6 +16,10 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
+## Android Studio 설정 시 주의사항
+* flutter, dart-sdk 패스 설정 시 bin 폴더까지 설정하면 안됨.
+* 예) C:\tools\dart-sdk\bin 일 경우 C:\tools\dart-sdk 까지 설정해야 함.
+
 ### 외부폴더 (img, fonts) 설정 후
 * pubspec.yaml의 assets, fonts에 등록
 * flutter pub get 명령어 실행
@@ -48,3 +52,9 @@ samples, guidance on mobile development, and a full API reference.
 ### Dio
 
 ### flutter secure storage
+
+### JSON_SERIALIZABLE
+* @JsonSerializable() 어노테이션 추가 후 flutter pub run build_runner build/watch 로 재빌드
+* 시리얼화된 모델 내부변수에 모델이 있을 경우, 마찬가지로 @JsonSerializable 어노테이션 추가해야 함
+
+### REtrofit
