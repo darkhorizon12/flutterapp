@@ -57,4 +57,7 @@ samples, guidance on mobile development, and a full API reference.
 * @JsonSerializable() 어노테이션 추가 후 flutter pub run build_runner build/watch 로 재빌드
 * 시리얼화된 모델 내부변수에 모델이 있을 경우, 마찬가지로 @JsonSerializable 어노테이션 추가해야 함
 
+* .g파일 원본파일 하위로 보내고 싶을 때 
+  * 톱니바퀴(Show options menu) > File Nesting > 맨 끝에 .g.dart; 추가 후 OK
+
 ### REtrofit
