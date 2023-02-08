@@ -13,6 +13,10 @@ class RestaurantCard extends StatelessWidget {
   final double ratings;
   final RestaurantPriceRange restaurantPriceRange;
   final bool isDetail;
+
+  // Hero 위젯 태그키
+  final String? heroKey;
+
   final String? detail;
 
   const RestaurantCard({
@@ -26,6 +30,7 @@ class RestaurantCard extends StatelessWidget {
     required this.ratings,
     required this.restaurantPriceRange,
     this.isDetail = false,
+    this.heroKey,
     this.detail,
   });
 
@@ -38,6 +43,7 @@ class RestaurantCard extends StatelessWidget {
         model.thumbUrl,
         fit: BoxFit.cover,
       ),
+      heroKey: model.id,
       name: model.name,
       tags: model.tags,
       ratingsCount: model.ratingsCount,
@@ -54,10 +60,17 @@ class RestaurantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (isDetail) image,
-        if (!isDetail)
+        if (heroKey != null)
+          Hero(
+            tag: heroKey!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(isDetail ? 0 : 12.0),
+              child: image,
+            ),
+          ),
+        if (heroKey == null)
           ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(isDetail ? 0 : 12.0),
             child: image,
           ),
         const SizedBox(
@@ -143,6 +156,7 @@ class RestaurantCard extends StatelessWidget {
 class _IconText extends StatelessWidget {
   final IconData icon;
   final String label;
+
   const _IconText({
     required this.icon,
     required this.label,

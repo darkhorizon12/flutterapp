@@ -61,3 +61,16 @@ samples, guidance on mobile development, and a full API reference.
   * 톱니바퀴(Show options menu) > File Nesting > 맨 끝에 .g.dart; 추가 후 OK
 
 ### REtrofit
+
+### 상태
+```agsl
+dependencies:
+  flutter_riverpod: ^2.1.3
+  riverpod_annotation: ^1.1.1
+  
+  
+dev_dependencies:
+  riverpod_generator: ^1.1.1  
+```
+
+### 심화 로딩 skeletons: mimic the page's layout while loading.
